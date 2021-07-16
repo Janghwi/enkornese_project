@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:google_sheets_update_example/api/sheets/menus_fetch_api.dart';
 import 'package:google_sheets_update_example/api/sheets/phrases_fetch_api.dart';
@@ -7,25 +9,50 @@ import 'package:google_sheets_update_example/page/phrase_page.dart';
 import '/api/sheets/phrases_fetch_api.dart';
 import '../model/phrase.dart';
 import 'menu_page.dart';
-import '1querymenuonelevel_page.dart';
+import 'package:http/http.dart' as http;
+
+import '1menuonelevel_page.dart';
 
 import 'phrase_page.dart';
 
-class QueryMenuTwolevelPage extends StatelessWidget {
-  final secondmenus;
+class MenuTwolevelPage extends StatelessWidget {
+  final passparam;
 
-  const QueryMenuTwolevelPage({
+  const MenuTwolevelPage({
     Key? key,
-    required this.secondmenus,
+    required this.passparam,
   }) : super(key: key);
+
+  Future<List<Menu>> fetchMenus1() async {
+    var catid = passparam;
+
+    final url = Uri.parse(
+      //'http://gsx2json.com/api?id=1uBvyfmwv8LsuAbp87voiXmQYSchk4p1BlqIMxGtzSfg&sheet=4&display=all&columns=false',
+      //'https://gsx2json.com/api?id=1uBvyfmwv8LsuAbp87voiXmQYSchk4p1BlqIMxGtzSfg&sheet=4&selection=선택947&columns=false',
+      //'https://gsx2json.com/api?id=1uBvyfmwv8LsuAbp87voiXmQYSchk4p1BlqIMxGtzSfg&sheet=8&situation=$selection&columns=false',
+      //'https://gsx2json.com/api?id=1uBvyfmwv8LsuAbp87voiXmQYSchk4p1BlqIMxGtzSfg&sheet=3&selection=인사&columns=false',
+      //'https://immense-depths-63197.herokuapp.com//api?id=1uBvyfmwv8LsuAbp87voiXmQYSchk4p1BlqIMxGtzSfg&sheet=3&columns=false&catid=secondmenus.catid',
+      'https://immense-depths-63197.herokuapp.com/api?id=1uBvyfmwv8LsuAbp87voiXmQYSchk4p1BlqIMxGtzSfg&sheet=3&columns=false&catid=$catid',
+    );
+    print(url);
+    final response = await http.get(url);
+
+    final body =
+        json.decode(response.body)['rows'].cast<Map<String, dynamic>>();
+    print(response.body);
+
+    return body.map<Menu>(Menu.fromJson).toList();
+
+    //return body.map<User>(User.fromJson).toList();
+  }
 
   @override
   Widget build(BuildContext context) => Scaffold(
         appBar: AppBar(
-          title: Text(secondmenus.eng),
-        ),
+            // title: Text(passparam.toString()),
+            ),
         body: FutureBuilder<List<Menu>>(
-          future: MenusFetchApi.fetchMenus1(),
+          future: fetchMenus1(),
           builder: (context, snapshot) {
             final secondmenus = snapshot.data;
 

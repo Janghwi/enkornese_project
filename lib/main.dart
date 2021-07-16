@@ -8,7 +8,7 @@ import 'package:flutter/services.dart';
 import 'page/create_sheets_page.dart';
 import 'page/listview_sheets_page.dart';
 import 'page/modify_sheets_page.dart';
-import 'page/1querymenuonelevel_page.dart';
+import 'page/1menuonelevel_page.dart';
 import 'widget/tabbar_widget.dart';
 
 Future main() async {
@@ -61,7 +61,7 @@ class MainPage extends StatelessWidget {
           ),
         ],
         children: [
-          QueryMenuOnelevelPage(),
+          MenuOnelevelPage(),
           CreateSheetsPage(),
           ModifySheetsPage(),
           ListViewSheetsPage(),

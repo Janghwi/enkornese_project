@@ -1,17 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:google_sheets_update_example/api/sheets/menus_fetch_api.dart';
-import 'package:google_sheets_update_example/api/sheets/phrases_fetch_api.dart';
 import 'package:google_sheets_update_example/model/menu.dart';
-import 'package:google_sheets_update_example/model/phrase.dart';
-import 'package:google_sheets_update_example/page/2querymenutwolevel_page.dart';
-import 'package:google_sheets_update_example/page/phrase_page.dart';
 import '/api/sheets/menus_fetch_api.dart';
 import '../model/menu.dart';
-import '2querymenutwolevel_page.dart';
-import '2querymenutwolevel_page1.dart';
+import '2menutwolevel_page.dart';
 
-class QueryMenuOnelevelPage extends StatelessWidget {
+class MenuOnelevelPage extends StatelessWidget {
   var menus;
 
   @override
@@ -56,7 +51,7 @@ class QueryMenuOnelevelPage extends StatelessWidget {
                 RoundedRectangleBorder(borderRadius: BorderRadius.circular(14)),
             child: InkWell(
               onTap: () => Navigator.of(context).push(MaterialPageRoute(
-                builder: (BuildContext context) => QueryMenuTwolevelPage1(
+                builder: (BuildContext context) => MenuTwolevelPage(
                   passparam: menusOut.catid,
                 ),
               )),
