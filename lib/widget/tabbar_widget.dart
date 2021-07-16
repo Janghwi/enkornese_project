@@ -21,8 +21,8 @@ class TabBarWidget extends StatelessWidget {
             centerTitle: true,
             bottom: TabBar(
               isScrollable: true,
-              indicatorColor: Colors.white,
-              indicatorWeight: 5,
+              indicatorColor: Colors.yellowAccent,
+              indicatorWeight: 4,
               tabs: tabs,
             ),
             elevation: 20,

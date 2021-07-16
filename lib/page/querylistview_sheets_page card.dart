@@ -46,7 +46,7 @@ class QueryListViewSheetsPageCard extends StatelessWidget {
             child: InkWell(
               onTap: () => Navigator.of(context).push(MaterialPageRoute(
                 builder: (BuildContext context) =>
-                    PhrasePage(phrases: phrasesOut),
+                    PhrasePage(passparam: phrasesOut),
               )),
               child: Container(
                 // decoration: BoxDecoration(

@@ -38,7 +38,8 @@ class QueryListViewSheetsPage2 extends StatelessWidget {
 
           return ListTile(
             onTap: () => Navigator.of(context).push(MaterialPageRoute(
-              builder: (BuildContext context) => PhrasePage(phrases: phrases1),
+              builder: (BuildContext context) =>
+                  PhrasePage(passparam: phrases1),
             )),
             leading: CircleAvatar(
               backgroundImage:

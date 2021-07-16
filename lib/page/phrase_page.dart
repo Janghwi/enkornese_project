@@ -3,17 +3,17 @@ import 'package:google_sheets_update_example/model/phrase.dart';
 import '/model/user.dart';
 
 class PhrasePage extends StatelessWidget {
-  final Phrase phrases;
+  final passparam;
 
   const PhrasePage({
     Key? key,
-    required this.phrases,
+    required this.passparam,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) => Scaffold(
         appBar: AppBar(
-          title: Text(phrases.eng),
+          title: Text(passparam.eng),
         ),
         body: Center(
           child: Column(
@@ -26,7 +26,7 @@ class PhrasePage extends StatelessWidget {
               ),
               const SizedBox(height: 40),
               Text(
-                phrases.eng,
+                passparam.eng,
                 style: TextStyle(
                   color: Colors.black,
                   fontWeight: FontWeight.bold,
@@ -34,7 +34,7 @@ class PhrasePage extends StatelessWidget {
                 ),
               ),
               Text(
-                phrases.kor,
+                passparam.kor,
                 style: TextStyle(
                   color: Colors.black,
                   fontWeight: FontWeight.bold,
@@ -42,7 +42,7 @@ class PhrasePage extends StatelessWidget {
                 ),
               ),
               Text(
-                phrases.jap,
+                passparam.jap,
                 style: TextStyle(
                   color: Colors.black,
                   fontWeight: FontWeight.bold,

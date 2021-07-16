@@ -5,6 +5,7 @@ import 'package:google_sheets_update_example/model/menu.dart';
 import '/api/sheets/menus_fetch_api.dart';
 import '../model/menu.dart';
 import '2menutwolevel_page.dart';
+import '2menutwolevel_page1.dart';
 
 class MenuOnelevelPage extends StatelessWidget {
   var menus;
@@ -51,7 +52,7 @@ class MenuOnelevelPage extends StatelessWidget {
                 RoundedRectangleBorder(borderRadius: BorderRadius.circular(14)),
             child: InkWell(
               onTap: () => Navigator.of(context).push(MaterialPageRoute(
-                builder: (BuildContext context) => MenuTwolevelPage(
+                builder: (BuildContext context) => MenuTwolevelPage1(
                   passparam: menusOut.catid,
                 ),
               )),
