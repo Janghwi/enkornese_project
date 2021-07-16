@@ -16,15 +16,15 @@ import '1querymenuonelevel_page.dart';
 import 'phrase_page.dart';
 
 class QueryMenuTwolevelPage1 extends StatelessWidget {
-  final secondmenus;
+  final passparam;
 
   const QueryMenuTwolevelPage1({
     Key? key,
-    required this.secondmenus,
+    required this.passparam,
   }) : super(key: key);
 
-  static Future<List<Menu>> fetchMenus1() async {
-    var catid = 1;
+  Future<List<Menu>> fetchMenus1() async {
+    var catid = passparam;
 
     final url = Uri.parse(
       //'http://gsx2json.com/api?id=1uBvyfmwv8LsuAbp87voiXmQYSchk4p1BlqIMxGtzSfg&sheet=4&display=all&columns=false',
@@ -49,8 +49,8 @@ class QueryMenuTwolevelPage1 extends StatelessWidget {
   @override
   Widget build(BuildContext context) => Scaffold(
         appBar: AppBar(
-          title: Text(secondmenus.eng),
-        ),
+            // title: Text(passparam.toString()),
+            ),
         body: FutureBuilder<List<Menu>>(
           future: fetchMenus1(),
           builder: (context, snapshot) {

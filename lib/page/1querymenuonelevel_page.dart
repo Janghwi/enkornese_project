@@ -56,8 +56,9 @@ class QueryMenuOnelevelPage extends StatelessWidget {
                 RoundedRectangleBorder(borderRadius: BorderRadius.circular(14)),
             child: InkWell(
               onTap: () => Navigator.of(context).push(MaterialPageRoute(
-                builder: (BuildContext context) =>
-                    QueryMenuTwolevelPage1(secondmenus: menusOut),
+                builder: (BuildContext context) => QueryMenuTwolevelPage1(
+                  passparam: menusOut.catid,
+                ),
               )),
               child: Container(
                 decoration: BoxDecoration(
