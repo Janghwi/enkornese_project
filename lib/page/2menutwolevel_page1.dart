@@ -73,7 +73,7 @@ class MenuTwolevelPage1 extends StatelessWidget {
 
   Widget buildUsers(List<Menu> menus) => StaggeredGridView.countBuilder(
         staggeredTileBuilder: (index) => index % 7 == 0
-            ? StaggeredTile.count(2, 2)
+            ? StaggeredTile.count(2, 1)
             : StaggeredTile.count(1, 1),
         physics: BouncingScrollPhysics(),
         itemCount: menus.length,
@@ -101,7 +101,7 @@ class MenuTwolevelPage1 extends StatelessWidget {
               child: Container(
                 decoration: BoxDecoration(
                   gradient: LinearGradient(
-                    colors: [Colors.blue.shade600, Colors.blue.shade200],
+                    colors: [Colors.lime, Colors.lime.shade200],
                     begin: Alignment.topCenter,
                     end: Alignment.bottomCenter,
                   ),
@@ -113,7 +113,7 @@ class MenuTwolevelPage1 extends StatelessWidget {
                       children: [
                         Text(
                           menusOut.eng,
-                          style: TextStyle(fontSize: 20, color: Colors.white),
+                          style: TextStyle(fontSize: 18, color: Colors.black),
                         ),
                         SizedBox(
                           height: 12,
