@@ -17,7 +17,8 @@ class TabBarWidget extends StatelessWidget {
         length: tabs.length,
         child: Scaffold(
           appBar: AppBar(
-            title: Text(title),
+            title: Text(title,
+                style: TextStyle(fontSize: 30, color: Colors.white)),
             centerTitle: true,
             bottom: TabBar(
               isScrollable: true,
