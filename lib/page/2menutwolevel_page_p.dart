@@ -1,25 +1,60 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:get/get.dart';
 import 'package:google_sheets_update_example/api/sheets/menus_fetch_api.dart';
-import 'package:google_sheets_update_example/controller/langcontroller.dart';
+import 'package:google_sheets_update_example/api/sheets/phrases_fetch_api.dart';
 import 'package:google_sheets_update_example/model/menu.dart';
-import '/api/sheets/menus_fetch_api.dart';
-import '../model/menu.dart';
-import '2menutwolevel_page.dart';
-import '2menutwolevel_page1.dart';
+import 'package:google_sheets_update_example/model/phrase.dart';
+import 'package:google_sheets_update_example/page/phrase_page.dart';
+import '/api/sheets/phrases_fetch_api.dart';
+import '../model/phrase.dart';
+import 'menu_page.dart';
+import 'package:http/http.dart' as http;
 
-class MenuOnelevelPage extends StatelessWidget {
-  var menus;
+import '1menuonelevel_page_p.dart';
+
+import 'phrase_page.dart';
+
+class MenuTwolevelPage extends StatelessWidget {
+  const MenuTwolevelPage({
+    Key? key,
+  }) : super(key: key);
+
+  Future<List<Menu>> fetchMenus1() async {
+    var catid = Get.arguments[0];
+
+    final url = Uri.parse(
+      //'http://gsx2json.com/api?id=1uBvyfmwv8LsuAbp87voiXmQYSchk4p1BlqIMxGtzSfg&sheet=4&display=all&columns=false',
+      //'https://gsx2json.com/api?id=1uBvyfmwv8LsuAbp87voiXmQYSchk4p1BlqIMxGtzSfg&sheet=4&selection=선택947&columns=false',
+      //'https://gsx2json.com/api?id=1uBvyfmwv8LsuAbp87voiXmQYSchk4p1BlqIMxGtzSfg&sheet=8&situation=$selection&columns=false',
+      //'https://gsx2json.com/api?id=1uBvyfmwv8LsuAbp87voiXmQYSchk4p1BlqIMxGtzSfg&sheet=3&selection=인사&columns=false',
+      //'https://immense-depths-63197.herokuapp.com//api?id=1uBvyfmwv8LsuAbp87voiXmQYSchk4p1BlqIMxGtzSfg&sheet=3&columns=false&catid=secondmenus.catid',
+      'https://immense-depths-63197.herokuapp.com/api?id=1uBvyfmwv8LsuAbp87voiXmQYSchk4p1BlqIMxGtzSfg&sheet=3&columns=false&catid=$catid',
+    );
+    print(url);
+    final response = await http.get(url);
+
+    final body =
+        json.decode(response.body)['rows'].cast<Map<String, dynamic>>();
+    print(response.body);
+
+    return body.map<Menu>(Menu.fromJson).toList();
+
+    //return body.map<User>(User.fromJson).toList();
+  }
+
   @override
   Widget build(BuildContext context) {
-    Get.put(LangController());
-
     return Scaffold(
+      appBar: AppBar(
+        title: Text(Get.arguments[1]),
+      ),
       body: FutureBuilder<List<Menu>>(
-        future: MenusFetchApi.fetchMenus(),
+        future: fetchMenus1(),
         builder: (context, snapshot) {
-          final menus = snapshot.data;
+          final secondmenus = snapshot.data;
 
           switch (snapshot.connectionState) {
             case ConnectionState.waiting:
@@ -28,7 +63,7 @@ class MenuOnelevelPage extends StatelessWidget {
               if (snapshot.hasError) {
                 return Center(child: Text('Some error occurred!'));
               } else {
-                return buildMenus(menus!);
+                return buildUsers(secondmenus!);
               }
           }
         },
@@ -36,9 +71,9 @@ class MenuOnelevelPage extends StatelessWidget {
     );
   }
 
-  Widget buildMenus(List<Menu> menus) => StaggeredGridView.countBuilder(
+  Widget buildUsers(List<Menu> menus) => StaggeredGridView.countBuilder(
         staggeredTileBuilder: (index) => index % 7 == 0
-            ? StaggeredTile.count(2, 2)
+            ? StaggeredTile.count(2, 1)
             : StaggeredTile.count(1, 1),
         physics: BouncingScrollPhysics(),
         itemCount: menus.length,
@@ -56,20 +91,21 @@ class MenuOnelevelPage extends StatelessWidget {
             shape:
                 RoundedRectangleBorder(borderRadius: BorderRadius.circular(14)),
             child: InkWell(
-              // onTap: () => Navigator.of(context).push(MaterialPageRoute(
-              //   builder: (BuildContext context) => MenuTwolevelPage1(
-              //     passparam: menusOut.catid,
+              // onTap: () => Navigator.of(context).push(
+              //   MaterialPageRoute(
+              //     builder: (BuildContext context) => PhrasePage(
+              //       passparam: menusOut.catid,
+              //     ),
               //   ),
+              // ),
               onTap: () {
-                Get.to(MenuTwolevelPage1(),
-                    arguments: [menusOut.catid, menusOut.eng],
-                    transition: Transition.zoom);
+                Get.to(PhrasePage(),
+                    arguments: menusOut.catid, transition: Transition.zoom);
               },
-
               child: Container(
                 decoration: BoxDecoration(
                   gradient: LinearGradient(
-                    colors: [Colors.blue.shade600, Colors.blue.shade200],
+                    colors: [Colors.lime, Colors.lime.shade200],
                     begin: Alignment.topCenter,
                     end: Alignment.bottomCenter,
                   ),
@@ -81,9 +117,8 @@ class MenuOnelevelPage extends StatelessWidget {
                       children: [
                         Text(
                           menusOut.eng,
-                          style: TextStyle(fontSize: 20, color: Colors.white),
+                          style: TextStyle(fontSize: 18, color: Colors.black),
                         ),
-
                         SizedBox(
                           height: 12,
                         ),

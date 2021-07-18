@@ -6,8 +6,6 @@ import 'package:http/http.dart' as http;
 
 class MenusFetchApi {
   static Future<List<Menu>> fetchMenus() async {
-    var st = "greetings";
-
     final url = Uri.parse(
       //'http://gsx2json.com/api?id=1uBvyfmwv8LsuAbp87voiXmQYSchk4p1BlqIMxGtzSfg&sheet=4&display=all&columns=false',
       //'https://gsx2json.com/api?id=1uBvyfmwv8LsuAbp87voiXmQYSchk4p1BlqIMxGtzSfg&sheet=4&selection=선택947&columns=false',
