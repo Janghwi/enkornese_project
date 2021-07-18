@@ -31,7 +31,7 @@ class MenuTwolevelPage_w extends StatelessWidget {
       //'https://gsx2json.com/api?id=1uBvyfmwv8LsuAbp87voiXmQYSchk4p1BlqIMxGtzSfg&sheet=8&situation=$selection&columns=false',
       //'https://gsx2json.com/api?id=1uBvyfmwv8LsuAbp87voiXmQYSchk4p1BlqIMxGtzSfg&sheet=3&selection=인사&columns=false',
       //'https://immense-depths-63197.herokuapp.com//api?id=1uBvyfmwv8LsuAbp87voiXmQYSchk4p1BlqIMxGtzSfg&sheet=3&columns=false&catid=secondmenus.catid',
-      'https://immense-depths-63197.herokuapp.com/api?id=1uBvyfmwv8LsuAbp87voiXmQYSchk4p1BlqIMxGtzSfg&sheet=3&columns=false&catid=$catid',
+      'https://gsx2json.com/api?id=1i11vzA9wgOIeizHoX24Y5WqJAI-yj6d2FvtVgWXFq1Y&sheet=3&columns=false&catid=$catid',
     );
     print(url);
     final response = await http.get(url);
