@@ -17,8 +17,8 @@ import '1menuonelevel_page_p.dart';
 
 import 'phrase_page.dart';
 
-class MenuTwolevelPage_w extends StatelessWidget {
-  const MenuTwolevelPage_w({
+class MenuTwolevelPageW extends StatelessWidget {
+  const MenuTwolevelPageW({
     Key? key,
   }) : super(key: key);
 

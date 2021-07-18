@@ -12,6 +12,8 @@ import '2menutwolevel_page2.dart';
 import '2menutwolevel_page_p.dart';
 import 'package:http/http.dart' as http;
 
+import '2menutwolevel_page_w.dart';
+
 class MenuOnelevelPageW extends StatelessWidget {
   const MenuOnelevelPageW({
     Key? key,
@@ -87,7 +89,7 @@ class MenuOnelevelPageW extends StatelessWidget {
               //     passparam: menusOut.catid,
               //   ),
               onTap: () {
-                Get.to(MenuTwolevelPage(),
+                Get.to(MenuTwolevelPageW(),
                     arguments: [menusOut.catid, menusOut.eng],
                     transition: Transition.zoom);
               },
