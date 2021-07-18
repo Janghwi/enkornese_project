@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:google_sheets_update_example/api/sheets/menus_fetch_api.dart';
 import 'package:google_sheets_update_example/api/sheets/phrases_fetch_api.dart';
 import 'package:google_sheets_update_example/model/menu.dart';
@@ -16,15 +17,12 @@ import '1menuonelevel_page.dart';
 import 'phrase_page.dart';
 
 class MenuTwolevelPage extends StatelessWidget {
-  final passparam;
-
   const MenuTwolevelPage({
     Key? key,
-    required this.passparam,
   }) : super(key: key);
 
   Future<List<Menu>> fetchMenus1() async {
-    var catid = passparam;
+    var catid = Get.arguments;
 
     final url = Uri.parse(
       //'http://gsx2json.com/api?id=1uBvyfmwv8LsuAbp87voiXmQYSchk4p1BlqIMxGtzSfg&sheet=4&display=all&columns=false',

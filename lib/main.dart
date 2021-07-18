@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:get/get.dart';
 // import 'package:staggered_gridview_example/widget/basic_grid_widget.dart';
 // import 'package:staggered_gridview_example/widget/custom_scroll_view_grid_widget.dart';
 // import 'package:staggered_gridview_example/widget/dynamic_size_grid_widget.dart';
@@ -25,7 +26,7 @@ class MyApp extends StatelessWidget {
   static final String title = 'ENKORNESE';
 
   @override
-  Widget build(BuildContext context) => MaterialApp(
+  Widget build(BuildContext context) => GetMaterialApp(
         debugShowCheckedModeBanner: false,
         title: title,
         theme: ThemeData.dark(),

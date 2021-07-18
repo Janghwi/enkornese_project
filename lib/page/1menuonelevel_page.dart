@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
+import 'package:get/get.dart';
 import 'package:google_sheets_update_example/api/sheets/menus_fetch_api.dart';
 import 'package:google_sheets_update_example/model/menu.dart';
 import '/api/sheets/menus_fetch_api.dart';
@@ -51,11 +52,15 @@ class MenuOnelevelPage extends StatelessWidget {
             shape:
                 RoundedRectangleBorder(borderRadius: BorderRadius.circular(14)),
             child: InkWell(
-              onTap: () => Navigator.of(context).push(MaterialPageRoute(
-                builder: (BuildContext context) => MenuTwolevelPage1(
-                  passparam: menusOut.catid,
-                ),
-              )),
+              // onTap: () => Navigator.of(context).push(MaterialPageRoute(
+              //   builder: (BuildContext context) => MenuTwolevelPage1(
+              //     passparam: menusOut.catid,
+              //   ),
+              onTap: () {
+                Get.to(MenuTwolevelPage1(),
+                    arguments: menusOut.catid, transition: Transition.zoom);
+              },
+
               child: Container(
                 decoration: BoxDecoration(
                   gradient: LinearGradient(

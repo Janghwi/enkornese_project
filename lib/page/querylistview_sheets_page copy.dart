@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:google_sheets_update_example/api/sheets/phrases_fetch_api.dart';
 import 'package:google_sheets_update_example/model/phrase.dart';
 import 'package:google_sheets_update_example/page/phrase_page.dart';
@@ -37,10 +38,10 @@ class QueryListViewSheetsPage2 extends StatelessWidget {
           final phrases1 = phrases[index];
 
           return ListTile(
-            onTap: () => Navigator.of(context).push(MaterialPageRoute(
-              builder: (BuildContext context) =>
-                  PhrasePage(passparam: phrases1),
-            )),
+            onTap: () {
+              Get.to(PhrasePage(),
+                  arguments: phrases1, transition: Transition.zoom);
+            },
             leading: CircleAvatar(
               backgroundImage:
                   NetworkImage('https://picsum.photos/id/237/200/300'),

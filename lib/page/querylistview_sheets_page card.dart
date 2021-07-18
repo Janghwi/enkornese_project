@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:google_sheets_update_example/api/sheets/phrases_fetch_api.dart';
 import 'package:google_sheets_update_example/model/phrase.dart';
 import 'package:google_sheets_update_example/page/phrase_page.dart';
@@ -44,10 +45,10 @@ class QueryListViewSheetsPageCard extends StatelessWidget {
             shape:
                 RoundedRectangleBorder(borderRadius: BorderRadius.circular(14)),
             child: InkWell(
-              onTap: () => Navigator.of(context).push(MaterialPageRoute(
-                builder: (BuildContext context) =>
-                    PhrasePage(passparam: phrasesOut),
-              )),
+              onTap: () {
+                Get.to(PhrasePage(),
+                    arguments: phrasesOut.catid, transition: Transition.zoom);
+              },
               child: Container(
                 // decoration: BoxDecoration(
                 //   gradient: LinearGradient(

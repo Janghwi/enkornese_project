@@ -1,21 +1,19 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:google_sheets_update_example/model/phrase.dart';
 import 'package:http/http.dart' as http;
 
 import '/model/user.dart';
 
 class PhrasePage extends StatelessWidget {
-  final passparam;
-
   const PhrasePage({
     Key? key,
-    required this.passparam,
   }) : super(key: key);
 
   Future<List<Phrase>> fetchPhrases() async {
-    var catid = passparam;
+    var catid = Get.arguments;
 
     final url = Uri.parse(
       //'http://gsx2json.com/api?id=1uBvyfmwv8LsuAbp87voiXmQYSchk4p1BlqIMxGtzSfg&sheet=4&display=all&columns=false',
@@ -25,7 +23,6 @@ class PhrasePage extends StatelessWidget {
       //'https://immense-depths-63197.herokuapp.com//api?id=1uBvyfmwv8LsuAbp87voiXmQYSchk4p1BlqIMxGtzSfg&sheet=3&columns=false&catid=secondmenus.catid',
       'https://immense-depths-63197.herokuapp.com/api?id=1uBvyfmwv8LsuAbp87voiXmQYSchk4p1BlqIMxGtzSfg&sheet=9&columns=false&catid=$catid',
     );
-    print(passparam);
     final response = await http.get(url);
 
     final body =
