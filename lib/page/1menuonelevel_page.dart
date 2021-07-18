@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:get/get.dart';
 import 'package:google_sheets_update_example/api/sheets/menus_fetch_api.dart';
+import 'package:google_sheets_update_example/controller/langcontroller.dart';
 import 'package:google_sheets_update_example/model/menu.dart';
 import '/api/sheets/menus_fetch_api.dart';
 import '../model/menu.dart';
@@ -10,27 +11,30 @@ import '2menutwolevel_page1.dart';
 
 class MenuOnelevelPage extends StatelessWidget {
   var menus;
-
   @override
-  Widget build(BuildContext context) => Scaffold(
-        body: FutureBuilder<List<Menu>>(
-          future: MenusFetchApi.fetchMenus(),
-          builder: (context, snapshot) {
-            final menus = snapshot.data;
+  Widget build(BuildContext context) {
+    Get.put(LangController());
 
-            switch (snapshot.connectionState) {
-              case ConnectionState.waiting:
-                return Center(child: CircularProgressIndicator());
-              default:
-                if (snapshot.hasError) {
-                  return Center(child: Text('Some error occurred!'));
-                } else {
-                  return buildMenus(menus!);
-                }
-            }
-          },
-        ),
-      );
+    return Scaffold(
+      body: FutureBuilder<List<Menu>>(
+        future: MenusFetchApi.fetchMenus(),
+        builder: (context, snapshot) {
+          final menus = snapshot.data;
+
+          switch (snapshot.connectionState) {
+            case ConnectionState.waiting:
+              return Center(child: CircularProgressIndicator());
+            default:
+              if (snapshot.hasError) {
+                return Center(child: Text('Some error occurred!'));
+              } else {
+                return buildMenus(menus!);
+              }
+          }
+        },
+      ),
+    );
+  }
 
   Widget buildMenus(List<Menu> menus) => StaggeredGridView.countBuilder(
         staggeredTileBuilder: (index) => index % 7 == 0
@@ -58,7 +62,8 @@ class MenuOnelevelPage extends StatelessWidget {
               //   ),
               onTap: () {
                 Get.to(MenuTwolevelPage1(),
-                    arguments: menusOut.catid, transition: Transition.zoom);
+                    arguments: [menusOut.catid, menusOut.eng],
+                    transition: Transition.zoom);
               },
 
               child: Container(
@@ -78,6 +83,7 @@ class MenuOnelevelPage extends StatelessWidget {
                           menusOut.eng,
                           style: TextStyle(fontSize: 20, color: Colors.white),
                         ),
+
                         SizedBox(
                           height: 12,
                         ),

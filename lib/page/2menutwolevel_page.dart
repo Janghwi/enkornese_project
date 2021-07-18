@@ -22,7 +22,8 @@ class MenuTwolevelPage extends StatelessWidget {
   }) : super(key: key);
 
   Future<List<Menu>> fetchMenus1() async {
-    var catid = Get.arguments;
+    var catid = Get.arguments[0];
+    var apptitle = Get.arguments[1];
 
     final url = Uri.parse(
       //'http://gsx2json.com/api?id=1uBvyfmwv8LsuAbp87voiXmQYSchk4p1BlqIMxGtzSfg&sheet=4&display=all&columns=false',
@@ -47,8 +48,8 @@ class MenuTwolevelPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) => Scaffold(
         appBar: AppBar(
-            // title: Text(passparam.toString()),
-            ),
+          title: Text(Get.arguments[1]),
+        ),
         body: FutureBuilder<List<Menu>>(
           future: fetchMenus1(),
           builder: (context, snapshot) {
