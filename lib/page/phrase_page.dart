@@ -37,8 +37,8 @@ class PhrasePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) => Scaffold(
         appBar: AppBar(
-            // title: Text(passparam.toString()),
-            ),
+          title: Text(Get.arguments[1].toString()),
+        ),
         body: FutureBuilder<List<Phrase>>(
           future: fetchPhrases(),
           builder: (context, snapshot) {

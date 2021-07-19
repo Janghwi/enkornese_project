@@ -13,7 +13,7 @@ class WordPage extends StatelessWidget {
   }) : super(key: key);
 
   Future<List<Phrase>> fetchPhrases() async {
-    var catid = Get.arguments;
+    var catid = Get.arguments[0];
 
     final url = Uri.parse(
       //'http://gsx2json.com/api?id=1uBvyfmwv8LsuAbp87voiXmQYSchk4p1BlqIMxGtzSfg&sheet=4&display=all&columns=false',
@@ -37,8 +37,9 @@ class WordPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) => Scaffold(
         appBar: AppBar(
-            // title: Text(passparam.toString()),
-            ),
+          title: Text(Get.arguments[1].toString()),
+          // title: Text(passparam.toString()),
+        ),
         body: FutureBuilder<List<Phrase>>(
           future: fetchPhrases(),
           builder: (context, snapshot) {

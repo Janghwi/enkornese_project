@@ -94,7 +94,8 @@ class MenuTwolevelPageW extends StatelessWidget {
               // ),
               onTap: () {
                 Get.to(WordPage(),
-                    arguments: menusOut.catid, transition: Transition.zoom);
+                    arguments: [menusOut.catid, menusOut.eng],
+                    transition: Transition.zoom);
               },
               child: Container(
                 decoration: BoxDecoration(
