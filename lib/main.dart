@@ -47,19 +47,19 @@ class MainPage extends StatelessWidget {
         tabs: [
           Tab(
             text: '문장',
-            icon: Icon(Icons.home),
+            icon: Icon(Icons.feed_outlined),
           ),
           Tab(
             text: '단어',
             icon: Icon(Icons.dynamic_feed),
           ),
           Tab(
-            text: '명언',
-            icon: Icon(Icons.dynamic_feed),
+            text: '문법',
+            icon: Icon(Icons.dynamic_form_sharp),
           ),
           Tab(
             text: '즐겨찾기',
-            icon: Icon(Icons.dynamic_feed),
+            icon: Icon(Icons.favorite_border),
           ),
         ],
         children: [

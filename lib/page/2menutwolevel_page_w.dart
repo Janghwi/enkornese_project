@@ -16,6 +16,7 @@ import 'package:http/http.dart' as http;
 import '1menuonelevel_page_p.dart';
 
 import 'phrase_page.dart';
+import 'word_page.dart';
 
 class MenuTwolevelPageW extends StatelessWidget {
   const MenuTwolevelPageW({
@@ -31,7 +32,7 @@ class MenuTwolevelPageW extends StatelessWidget {
       //'https://gsx2json.com/api?id=1uBvyfmwv8LsuAbp87voiXmQYSchk4p1BlqIMxGtzSfg&sheet=8&situation=$selection&columns=false',
       //'https://gsx2json.com/api?id=1uBvyfmwv8LsuAbp87voiXmQYSchk4p1BlqIMxGtzSfg&sheet=3&selection=인사&columns=false',
       //'https://immense-depths-63197.herokuapp.com//api?id=1uBvyfmwv8LsuAbp87voiXmQYSchk4p1BlqIMxGtzSfg&sheet=3&columns=false&catid=secondmenus.catid',
-      'https://gsx2json.com/api?id=1i11vzA9wgOIeizHoX24Y5WqJAI-yj6d2FvtVgWXFq1Y&sheet=3&columns=false&catid=$catid',
+      'https://gsx2json.com/api?id=1i11vzA9wgOIeizHoX24Y5WqJAI-yj6d2FvtVgWXFq1Y&sheet=2&columns=false&cat1=$catid',
     );
     print(url);
     final response = await http.get(url);
@@ -69,15 +70,10 @@ class MenuTwolevelPageW extends StatelessWidget {
         ),
       );
 
-  Widget buildUsers(List<Menu> menus) => StaggeredGridView.countBuilder(
-        staggeredTileBuilder: (index) => index % 7 == 0
-            ? StaggeredTile.count(2, 1)
-            : StaggeredTile.count(1, 1),
+  Widget buildUsers(List<Menu> menus) => ListView.builder(
         physics: BouncingScrollPhysics(),
+        reverse: false,
         itemCount: menus.length,
-        mainAxisSpacing: 1,
-        crossAxisSpacing: 1,
-        crossAxisCount: 3,
         itemBuilder: (context, index) {
           final menusOut = menus[index];
 
@@ -97,7 +93,7 @@ class MenuTwolevelPageW extends StatelessWidget {
               //   ),
               // ),
               onTap: () {
-                Get.to(PhrasePage(),
+                Get.to(WordPage(),
                     arguments: menusOut.catid, transition: Transition.zoom);
               },
               child: Container(
@@ -113,6 +109,10 @@ class MenuTwolevelPageW extends StatelessWidget {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
+                        CircleAvatar(
+                          backgroundImage: NetworkImage(menusOut.url),
+                          radius: 20,
+                        ),
                         Text(
                           menusOut.eng,
                           style: TextStyle(fontSize: 18, color: Colors.black),
@@ -120,10 +120,14 @@ class MenuTwolevelPageW extends StatelessWidget {
                         SizedBox(
                           height: 12,
                         ),
-                        CircleAvatar(
-                          backgroundImage: NetworkImage(menusOut.url),
-                          radius: 20,
+                        Text(
+                          menusOut.kor,
+                          style: TextStyle(fontSize: 18, color: Colors.black),
                         ),
+                        // CircleAvatar(
+                        //   backgroundImage: NetworkImage(menusOut.url),
+                        //   radius: 20,
+                        // ),
                         // Text(
                         //   menusOut.kor,
                         //   style: TextStyle(fontSize: 20, color: Colors.white),
