@@ -3,9 +3,10 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_sheets_update_example/model/phrase.dart';
+import 'package:google_sheets_update_example/page/word_html1.dart';
 import 'package:http/http.dart' as http;
 
-import '/model/user.dart';
+import 'word_html.dart';
 
 class WordPage extends StatelessWidget {
   const WordPage({
@@ -59,58 +60,64 @@ class WordPage extends StatelessWidget {
         ),
       );
 
-  Widget buildUsers(List<Phrase> phrases) => ListView.builder(
-        physics: BouncingScrollPhysics(),
-        itemCount: phrases.length,
-        itemBuilder: (context, index) {
-          final phrasesOut = phrases[index];
-          var phraseNo = index + 1;
-          return Card(
-            child: Column(
-              children: [
-                Row(children: <Widget>[
-                  CircleAvatar(
-                    backgroundColor: Colors.blueGrey,
-                    radius: 12,
-                    child: Text(
-                      phraseNo.toString(),
-                      style: TextStyle(fontSize: 10, color: Colors.white),
-                      overflow: TextOverflow.ellipsis,
-                    ),
-                  ),
-                  SizedBox(
-                    width: 10.0,
-                  ),
-                  Expanded(
-                    child: Text(
-                      phrasesOut.eng,
-                      style: TextStyle(fontSize: 20, color: Colors.white),
-                      textAlign: TextAlign.start,
-                      overflow: TextOverflow.ellipsis,
-                      maxLines: 2,
-                    ),
-                  ),
-                ]),
-                ListTile(
-                  onTap: () => {},
-                  // leading: CircleAvatar(
-                  //   backgroundColor: Colors.blueGrey,
-                  //   child: Text(
-                  //     phraseNo.toString(),
-                  //     style: TextStyle(fontSize: 15, color: Colors.white),
-                  //   ),
-                  // ),
-                  title: Text(phrasesOut.kor, overflow: TextOverflow.ellipsis),
-                  subtitle: Text(
-                    phrasesOut.jap,
+  Widget buildUsers(List<Phrase> phrases) {
+    return ListView.builder(
+      physics: BouncingScrollPhysics(),
+      itemCount: phrases.length,
+      itemBuilder: (context, index) {
+        final phrasesOut = phrases[index];
+        var phraseNo = index + 1;
+        return Card(
+          child: Column(
+            children: [
+              Row(children: <Widget>[
+                CircleAvatar(
+                  backgroundColor: Colors.blueGrey,
+                  radius: 12,
+                  child: Text(
+                    phraseNo.toString(),
+                    style: TextStyle(fontSize: 10, color: Colors.white),
                     overflow: TextOverflow.ellipsis,
                   ),
-                  isThreeLine: true,
-                  trailing: Icon(Icons.keyboard_arrow_right),
                 ),
-              ],
-            ),
-          );
-        },
-      );
+                SizedBox(
+                  width: 10.0,
+                ),
+                Expanded(
+                  child: Text(
+                    phrasesOut.eng,
+                    style: TextStyle(fontSize: 20, color: Colors.white),
+                    textAlign: TextAlign.start,
+                    overflow: TextOverflow.ellipsis,
+                    maxLines: 2,
+                  ),
+                ),
+              ]),
+              ListTile(
+                onTap: () {
+                  Get.to(WordHtmlPage(),
+                      arguments: [phrasesOut.catid, phrasesOut.eng],
+                      transition: Transition.zoom);
+                },
+                // leading: CircleAvatar(
+                //   backgroundColor: Colors.blueGrey,
+                //   child: Text(
+                //     phraseNo.toString(),
+                //     style: TextStyle(fontSize: 15, color: Colors.white),
+                //   ),
+                // ),
+                title: Text(phrasesOut.kor, overflow: TextOverflow.ellipsis),
+                subtitle: Text(
+                  phrasesOut.jap,
+                  overflow: TextOverflow.ellipsis,
+                ),
+                isThreeLine: true,
+                trailing: Icon(Icons.keyboard_arrow_right),
+              ),
+            ],
+          ),
+        );
+      },
+    );
+  }
 }
