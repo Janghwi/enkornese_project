@@ -65,14 +65,16 @@ class MenuOnelevelPageW extends StatelessWidget {
   }
 
   Widget buildMenus(List<Menu> menus) => StaggeredGridView.countBuilder(
-        staggeredTileBuilder: (index) => index % 7 == 0
-            ? StaggeredTile.count(2, 2)
-            : StaggeredTile.count(1, 1),
+        // staggeredTileBuilder: (index) => index % 7 == 0
+        //     ? StaggeredTile.count(2, 2)
+        //     : StaggeredTile.count(1, 1),
+        staggeredTileBuilder: (int index) =>
+            new StaggeredTile.count(2, index.isEven ? 3 : 2),
         physics: BouncingScrollPhysics(),
         itemCount: menus.length,
         mainAxisSpacing: 1,
         crossAxisSpacing: 1,
-        crossAxisCount: 3,
+        crossAxisCount: 4,
         itemBuilder: (context, index) {
           final menusOut = menus[index];
 
