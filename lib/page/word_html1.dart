@@ -76,7 +76,40 @@ class WordHtmlPage1 extends StatelessWidget {
         ),
         body: SingleChildScrollView(
           physics: BouncingScrollPhysics(),
-          child: Html(data: htmlData),
+          child: Html(
+            data: htmlData,
+            customRender: {
+              // 'flutter' : (RenderContext context, Widget child, attributes, _){
+              //   return FlutterLogo(
+              //     style: FlutterLogoStyle.horizontal,
+              //     textColor: Colors.blue,
+              //     size: 100.0,
+              //   );
+              // }
+            },
+            style: {
+              'html': Style(backgroundColor: Colors.white12),
+              'table': Style(backgroundColor: Colors.grey.shade200),
+              'td': Style(
+                backgroundColor: Colors.grey.shade400,
+                padding: EdgeInsets.all(10),
+              ),
+              'th': Style(padding: EdgeInsets.all(10), color: Colors.black),
+              'tr': Style(
+                  backgroundColor: Colors.grey.shade300,
+                  border:
+                      Border(bottom: BorderSide(color: Colors.greenAccent))),
+            },
+            // onLinkTap: (url){
+            //     print('Open the url $url......');
+            // },
+            // onImageTap: (img){
+            //     print('Image $img');
+            // },
+            // onImageError: (exception, stacktrace){
+            //     print(exception);
+            // },
+          ),
         ),
       );
 }
